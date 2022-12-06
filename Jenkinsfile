@@ -15,7 +15,7 @@ pipeline {
                publishHTML (target: [
 
                 reportDir: 'target/site/jacoco',
-                reportFiles:  'jacoco.csv',
+                reportFiles:  'index.html,jacoco.csv',
                 reportName: 'Jacoco p Report'
                ])
             }
