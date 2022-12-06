@@ -13,8 +13,8 @@ pipeline {
             steps {
                sh "mvn test"
                publishHTML (target: [
-                reportDir: 'target/site/jacoco'
-                reportFiles:  'index.html'
+                reportDir: 'target/site/jacoco',
+                reportFiles:  'index.html',
                 reportName: 'Jacoco Report'
                ])
             }
