@@ -14,7 +14,7 @@ pipeline {
                sh "mvn test"
                publishHTML (target: [
 
-                reportName: 'Jacoco l Report'
+                reportName: 'Jacoco p Report'
                ])
             }
         }
