@@ -16,7 +16,7 @@ pipeline {
 
                 reportDir: 'target/site/jacoco',
                 reportFiles:  'index.html,jacoco.csv',
-                reportName: 'Jacoco p Report'
+                reportName: 'Jacoco Report'
                ])
             }
         }
