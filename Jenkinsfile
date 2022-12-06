@@ -14,6 +14,7 @@ pipeline {
                sh "mvn test"
                publishHTML (target: [
 
+                reportDir: 'target/site/jacoco',
                 reportName: 'Jacoco p Report'
                ])
             }
