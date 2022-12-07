@@ -18,6 +18,13 @@ pipeline {
                 reportFiles:  'index.html,jacoco.csv',
                 reportName: 'Jacoco Report'
                ])
+
+                publishHTML (target: [
+
+                               reportDir: 'target/',
+                               reportFiles:  'checkstyle-result.xml',
+                               reportName: 'checkstyle report'
+                              ])
             }
         }
         
