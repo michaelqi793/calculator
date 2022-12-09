@@ -34,4 +34,13 @@ pipeline {
         
         
     }
+
+    post {
+        always {
+            mail to: 'mapleupright@163.com'
+            subject: "Completed Pipeline: ${currentBuild.fullDisplayName}"
+            body: "you build completed please check: ${env.BUILD_URL}"
+        }
+
+    }
 }
