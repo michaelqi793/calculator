@@ -37,9 +37,9 @@ pipeline {
 
     post {
         always {
-            emailext body: "you build completed please check: ${env.BUILD_URL}",
+                mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
-                 to: 'mapleupright@163.com'
+               body: "you build completed please check: ${env.BUILD_URL}"
         }
 
     }
