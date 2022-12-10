@@ -1,20 +1,20 @@
 pipeline {
     
     agent any
-    triggers {
+  /*   triggers {
         pollSCM('* * * * *')
-    }
+    } */
     stages {
         
-         stage("Compile") {
+         stage("Clean") {
             steps {
-               sh "mvn compile"
+               sh "mvn clean"
             }
         }
         
-         stage("Unit Test") {
+         stage("Install") {
             steps {
-               sh "mvn test"
+               sh "mvn install"
                publishHTML (target: [
 
                 reportDir: 'target/site/jacoco',
@@ -30,17 +30,25 @@ pipeline {
                               ])
             }
         }
+
+        stage("Docker imaging") {
+            steps {
+               sh "docker build -t archer999/calculator ."
+
+            }
+
+        }
         
         
         
     }
 
     post {
-        always {
+       /*  always {
                 mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "you build completed please check: ${env.BUILD_URL}"
-        }
+        } */
 
     }
 }
