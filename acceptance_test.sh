@@ -1,3 +1,3 @@
 #!/bin/bash
 
-test $(curl http://172.17.0.4:8081/sum?a=1\&b=2) -eq 3
+test $(curl http://172.17.0.5:8081/sum?a=1\&b=2) -eq 3
