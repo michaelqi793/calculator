@@ -56,7 +56,14 @@ pipeline {
         stage ("Acceptance test") {
             steps {
                sleep 60
-               sh "echo ${env.CONTAINER_ID}"
+               script {
+                   env.CONTAINER_IP = sh (
+                       script: "docker inspect ${env.CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print \$4}')",
+                       returnStdout: true
+                   )
+
+               }
+               sh "echo ${env.CONTAINER_IP}"
               // sh "docker inspect \$container_id | grep IPAddress"
             //   sh "export container_ip=\$(docker inspect ${container_id} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print \$4}')"
              //  sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
