@@ -59,7 +59,7 @@ pipeline {
                script {
                    env.CONTAINER_IP = sh (
                        //script: 'docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m \1 | awk -F \'"\' \'{print \$4}\'',
-                       script: 'docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m 1',
+                       script: 'docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} | grep IPAddress | sort | grep IPAddress',
                        returnStdout: true
                    )
 
