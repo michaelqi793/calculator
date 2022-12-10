@@ -58,10 +58,12 @@ pipeline {
 
     post {
        always {
-               echo "Email sent.";
+               echo "Email sent."
                /*  mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "you build completed please check: ${env.BUILD_URL}" */
+               sh "docker -H 172.17.0.2:2375 stop calculator"
+
         }
 
     }
