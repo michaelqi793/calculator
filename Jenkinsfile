@@ -56,15 +56,15 @@ pipeline {
         stage ("Acceptance test") {
             steps {
                sleep 60
-               script {
+              /*  script {
                    env.CONTAINER_IP = sh (
                        //script: 'docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m \1 | awk -F \'"\' \'{print \$4}\'',
                        script: "docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID}",
                        returnStdout: true
                    )
 
-               }
-               sh "echo ${env.CONTAINER_IP}"
+               } */
+               "docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID}"
               // sh "docker inspect \$container_id | grep IPAddress"
             //   sh "export container_ip=\$(docker inspect ${container_id} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print \$4}')"
              //  sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
