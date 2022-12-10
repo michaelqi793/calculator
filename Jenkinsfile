@@ -12,9 +12,9 @@ pipeline {
             }
         }
         
-         stage("Install") {
+         stage("Package") {
             steps {
-               sh "mvn install"
+               sh "mvn package"
                publishHTML (target: [
 
                 reportDir: 'target/site/jacoco',
