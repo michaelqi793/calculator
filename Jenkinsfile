@@ -39,7 +39,8 @@ pipeline {
 
         stage ("Stage test") {
             steps {
-               sh "docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator"
+              // sh "docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator"
+               sh "export container_id=$(docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator)"
 
             }
 
@@ -48,6 +49,8 @@ pipeline {
         stage ("Acceptance test") {
             steps {
                sleep 60
+               sh "export container_ip=$(docker inspect $container_id | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print $4}')
+"
                sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
             }
         }
@@ -62,7 +65,7 @@ pipeline {
                /*  mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "you build completed please check: ${env.BUILD_URL}" */
-               //sh "docker -H 172.17.0.2:2375 stop calculator"
+               sh "docker -H 172.17.0.2:2375 stop calculator"
 
         }
 
