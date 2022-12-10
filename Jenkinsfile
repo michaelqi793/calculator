@@ -41,6 +41,7 @@ pipeline {
             steps {
               // sh "docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator"
                sh "export container_id=\$(docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator)"
+               sh "echo \$container_id"
 
             }
 
@@ -49,7 +50,8 @@ pipeline {
         stage ("Acceptance test") {
             steps {
                sleep 60
-               sh "docker inspect \$container_id | grep IPAddress"
+               sh "echo \$container_id"
+              // sh "docker inspect \$container_id | grep IPAddress"
             //   sh "export container_ip=\$(docker inspect ${container_id} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print \$4}')"
              //  sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
             }
