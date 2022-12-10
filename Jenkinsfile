@@ -36,6 +36,21 @@ pipeline {
                sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
             }
         }
+
+        stage ("Stage test") {
+            steps {
+               sh "docker -H 172.17.0.2:2375 run -d -rm -p 8765:8081 --name calculator archer999/calculator"
+
+            }
+
+        }
+
+        stage ("Acceptance test") {
+            steps {
+               sleep 60
+               sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+            }
+        }
         
         
         
