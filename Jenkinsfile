@@ -44,11 +44,12 @@ pipeline {
     }
 
     post {
-       /*  always {
-                mail to: 'mapleupright@163.com',
+       always {
+               echo "Email sent.";
+               /*  mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
-               body: "you build completed please check: ${env.BUILD_URL}"
-        } */
+               body: "you build completed please check: ${env.BUILD_URL}" */
+        }
 
     }
 }
