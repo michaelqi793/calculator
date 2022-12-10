@@ -40,7 +40,7 @@ pipeline {
         stage ("Stage test") {
             steps {
               // sh "docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator"
-               sh "export container_id=\$(docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator)"
+               sh "container_id=\$(docker -H 172.17.0.2:2375 run -d --rm --name calculator archer999/calculator)"
                sh "echo \$container_id"
 
             }
