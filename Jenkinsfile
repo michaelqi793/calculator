@@ -48,7 +48,7 @@ pipeline {
                                returnStdout: true
                            )
                        }
-
+                sh "echo ${env.CONTAINER_ID}"
             }
 
         }
