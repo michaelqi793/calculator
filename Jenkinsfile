@@ -33,10 +33,8 @@ pipeline {
 
         stage("Docker imaging") {
             steps {
-               sh "docker build -t archer999/calculator ."
-
+               sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
             }
-
         }
         
         
