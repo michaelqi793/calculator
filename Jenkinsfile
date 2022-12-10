@@ -65,6 +65,7 @@ pipeline {
                }
              // sh 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress'
               //sh 'printenv'
+              sh 'echo ${CONTAINER_IP}'
             }
         }
         
