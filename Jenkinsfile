@@ -64,7 +64,7 @@ pipeline {
                    )
 
                } */
-              sh "docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} | grep IPAddress"
+              sh "docker -H 172.17.0.2:2375 inspect ${env.CONTAINER_ID} \| grep IPAddress"
               // sh "docker inspect \$container_id | grep IPAddress"
             //   sh "export container_ip=\$(docker inspect ${container_id} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F '\"' '{print \$4}')"
              //  sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
