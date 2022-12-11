@@ -63,7 +63,6 @@ pipeline {
                    ).trim()
 
                }
-             // sh 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress'
               //sh 'printenv'
               sh 'echo ${CONTAINER_IP}'
               sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
@@ -81,7 +80,7 @@ pipeline {
                /*  mail to: 'mapleupright@163.com',
                  subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "you build completed please check: ${env.BUILD_URL}" */
-               sh "docker -H 172.17.0.2:2375 stop calculator"
+               sh 'docker -H 172.17.0.2:2375 stop ${CONTAINER_ID}'
 
         }
 
