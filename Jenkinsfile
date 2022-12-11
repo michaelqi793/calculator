@@ -56,11 +56,11 @@ pipeline {
         stage ("Acceptance test") {
             steps {
                sleep 60
-                script {
+               script {
                    env.CONTAINER_IP = sh (
-                       script: 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F \'"\' \'{print \$4}\' | sed \'s/\\s+//g\'',
+                       script: 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F \'"\' \'{print \$4}\'',
                        returnStdout: true
-                   )
+                   ).trim()
 
                }
              // sh 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress'
