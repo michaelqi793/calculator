@@ -78,7 +78,7 @@ pipeline {
            stage ("Acceptance Test by Behavior") {
                      steps {
                        sh 'echo ${SERVER_IP}'
-                       sh 'mvn failsafe:integration-test -Dcalculator.url=http://${SERVER_IP}:${SERVER_PORT}'
+                       sh 'mvn integration-test -Dcalculator.url=http://${SERVER_IP}:${SERVER_PORT}'
                      }
                  }
         
