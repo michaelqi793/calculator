@@ -50,7 +50,7 @@ pipeline {
 
         }
 
-        stage ("Acceptance test") {
+        stage ("Acceptance test by test script") {
             steps {
                sleep 30
                script {
@@ -66,6 +66,13 @@ pipeline {
 
             }
         }
+
+           stage ("Acceptance test by behavior") {
+                     steps {
+                       sh 'echo ${SERVER_IP}'
+                       sh 'mvn failsafe:integration-test'
+                     }
+                 }
         
         
         
