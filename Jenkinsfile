@@ -70,7 +70,7 @@ pipeline {
            stage ("Acceptance test by behavior") {
                      steps {
                        sh 'echo ${SERVER_IP}'
-                       sh 'mvn failsafe:integration-test'
+                       sh 'mvn failsafe:integration-test -Dcalculator.url=${SERVER_IP}'
                      }
                  }
         
