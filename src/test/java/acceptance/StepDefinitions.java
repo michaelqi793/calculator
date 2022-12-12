@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** Steps definitions for calculator.feature */
 public class StepDefinitions {
-    private String server = System.getProperty("calculator.url");
+    private String server = System.getProperty("SERVER_IP");
 
-   // private RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
 
     private int a;
     private int b;
@@ -20,6 +20,8 @@ public class StepDefinitions {
 
     @Given("^I have two numbers: (.*) and (.*)$")
     public void i_have_two_numbers(int a, int b) throws Throwable {
+        System.out.println(server);
+        System.out.println("#########");
         this.a = a;
         this.b = b;
     }

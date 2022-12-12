@@ -54,14 +54,14 @@ pipeline {
             steps {
                sleep 30
                script {
-                   env.CONTAINER_IP = sh (
+                   env.SERVER_IP = sh (
                        script: 'docker -H 172.17.0.2:2375 inspect ${CONTAINER_ID} | grep IPAddress | sort | grep IPAddress -m 1 | awk -F \'"\' \'{print \$4}\'',
                        returnStdout: true
                    ).trim()
 
                }
               //sh 'printenv'
-              sh 'echo ${CONTAINER_IP}'
+              sh 'echo ${SERVER_IP}'
               sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
 
             }
