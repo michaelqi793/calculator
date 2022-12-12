@@ -28,8 +28,8 @@ public class StepDefinitions {
 
     @When("^the calculator sums them$")
     public void the_calculator_sums_them() throws Throwable {
-    //    String url = String.format("%s/sum?a=%s&b=%s", server, a, b);
-     //   result = restTemplate.getForObject(url, String.class);
+        String url = String.format("%s/sum?a=%s&b=%s", server, a, b);
+        result = restTemplate.getForObject(url, Integer.class);
         result = a + b;
     }
 
