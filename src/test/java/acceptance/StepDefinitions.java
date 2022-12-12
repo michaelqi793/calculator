@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** Steps definitions for calculator.feature */
 public class StepDefinitions {
-    private String server = System.getProperty("SERVER_IP");
+    private String server = System.getProperty("calculator.url");
 
     private RestTemplate restTemplate = new RestTemplate();
 
