@@ -12,7 +12,7 @@ pipeline {
             }
         }
         
-         stage("Package") {
+         stage("Unit Test and Package") {
             steps {
                sh "mvn package"
                publishHTML (target: [
@@ -31,13 +31,13 @@ pipeline {
             }
         }
 
-        stage("Docker imaging") {
+        stage("Docker Imaging") {
             steps {
                sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
             }
         }
 
-        stage ("Stage test") {
+        stage ("Stage Test Environment") {
             steps {
                 script {
                            env.CONTAINER_ID = sh (
@@ -50,7 +50,7 @@ pipeline {
 
         }
 
-        stage ("Acceptance test by test script") {
+        stage ("Integration Test by Test Script") {
             steps {
                sleep 30
                script {
@@ -60,17 +60,25 @@ pipeline {
                    ).trim()
 
                }
+
+                script {
+                                  env.SERVER_PORT = sh (
+                                      script: 'docker -H 172.17.0.2:2375 container logs ${CONTAINER_ID} | grep \'Tomcat started\' | cut -c 124-128',
+                                      returnStdout: true
+                                  ).trim()
+
+                              }
               //sh 'printenv'
-              sh 'echo ${SERVER_IP}'
+              sh 'echo ${SERVER_IP}:${SERVER_PORT}'
               sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
 
             }
         }
 
-           stage ("Acceptance test by behavior") {
+           stage ("Acceptance Test by Behavior") {
                      steps {
                        sh 'echo ${SERVER_IP}'
-                       sh 'mvn failsafe:integration-test -Dcalculator.url=${SERVER_IP}'
+                       sh 'mvn failsafe:integration-test -Dcalculator.url=http://${SERVER_IP}:${SERVER_PORT}'
                      }
                  }
         
