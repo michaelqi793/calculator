@@ -1,5 +1,6 @@
 package com.archer.calculator;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /** have to.
@@ -7,13 +8,25 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Calculator {
+
+    /**
+     * have to.
+     */
+    private static final long REST = 3000L;
+
     /** have to.
      *
      * @param a
      * @param b
      * @return the sum of a and b
      */
+    @Cacheable("sum")
     public int sum(final int a, final int b) {
+        try {
+            Thread.sleep(REST);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return  a + b;
     }
 }
