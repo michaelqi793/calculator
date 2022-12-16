@@ -21,16 +21,14 @@ public class CalculatorApplication {
         SpringApplication.run(CalculatorApplication.class, args);
     }
 
-    /**
-     *
-     * @return the hazelcast cleintconfig used by the spring cache framework
-     */
-    @Bean
-    public ClientConfig hazelcastClientConfig() {
+
+   /*
+   @Bean
+   public ClientConfig hazelcastClientConfig() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.getNetworkConfig().addAddress("hazelcast");
         return clientConfig;
 
-    }
+    }*/
 
 }
