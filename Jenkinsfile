@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage ("Stage Test Environment") {
+        stage ("Prepare Test Environment") {
             steps {
                 script {
                            env.CONTAINER_ID = sh (
