@@ -18,16 +18,10 @@ spec:
     metadata:
       labels:
         app: calculator
-        label: label
-        foo: bar
     spec:
       containers:
       - name: calculator
-        image: archer999/calculator:latest
+        image: archer999/calculator
         imagePullPolicy: Never
         ports:
         - containerPort: 8081
-        readinessProbe:
-          httpGet:
-            path: /sum?a=1&b=2
-            port: 8081

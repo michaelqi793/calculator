@@ -11,7 +11,7 @@ public class Calculator {
     /**
      * have to.
      */
-    private static final long REST = 3000L;
+  //  private static final long REST = 3000L;
 
     /** have to.
      *
@@ -21,11 +21,11 @@ public class Calculator {
      */
   //  @Cacheable("sum")
     public int sum(final int a, final int b) {
-        try {
+       /* try {
             Thread.sleep(REST);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         return  a + b;
     }
 }
