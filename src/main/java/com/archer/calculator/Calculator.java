@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class Calculator {
 
-    /**
-     * have to.
-     */
-  //  private static final long REST = 3000L;
 
     /** have to.
      *
