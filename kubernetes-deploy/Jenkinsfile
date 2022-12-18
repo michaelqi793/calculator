@@ -51,7 +51,7 @@ pipeline {
            stage ("Acceptance Test by Behavior") {
                      steps {
                        sleep 50
-                       sh "chmod +x acceptance_test_kubernetes.sh && ./acceptance_test_kubernetes.sh"
+                    //   sh "chmod +x acceptance_test_kubernetes.sh && ./acceptance_test_kubernetes.sh"
                      }
                  }
         
