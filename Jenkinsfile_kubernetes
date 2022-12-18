@@ -1,0 +1,70 @@
+pipeline {
+    
+    agent any
+  /*   triggers {
+        pollSCM('* * * * *')
+    } */
+    stages {
+        
+         stage("Clean") {
+            steps {
+               sh "mvn clean"
+            }
+        }
+        
+         stage("Unit Test and Package") {
+            steps {
+               sh "mvn package"
+               publishHTML (target: [
+
+                reportDir: 'target/site/jacoco',
+                reportFiles:  'index.html,jacoco.csv',
+                reportName: 'Jacoco Report'
+               ])
+
+                publishHTML (target: [
+
+                               reportDir: 'target/',
+                               reportFiles:  'checkstyle-result.xml',
+                               reportName: 'checkstyle report'
+                              ])
+            }
+        }
+
+        stage("Docker Imaging") {
+            steps {
+               sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
+            }
+        }
+
+        stage ("Deploy to staging") {
+            steps {
+               sh "kubectl apply -f deployment.yaml"
+               sh "kubectl apply -f service.yaml"
+            }
+
+        }
+
+
+           stage ("Acceptance Test by Behavior") {
+                     steps {
+                       sleep 50
+                       sh "chmod +x acceptance_test_kubernetes.sh && ./acceptance_test_kubernetes.sh"
+                     }
+                 }
+        
+        
+        
+    }
+
+    post {
+       always {
+               echo "Email sent."
+               /*  mail to: 'mapleupright@163.com',
+                 subject: "Hello Completed Pipeline: ${currentBuild.fullDisplayName}",
+               body: "you build completed please check: ${env.BUILD_URL}" */
+
+        }
+
+    }
+}
