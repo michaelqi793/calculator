@@ -6,13 +6,13 @@ pipeline {
     } */
     stages {
         
-         stage("Clean") {
+       /*   stage("Clean") {
             steps {
                sh "mvn clean"
             }
-        }
+        } */
         
-         stage("Unit Test and Package") {
+        /*  stage("Unit Test and Package") {
             steps {
                sh "mvn package"
                publishHTML (target: [
@@ -29,13 +29,13 @@ pipeline {
                                reportName: 'checkstyle report'
                               ])
             }
-        }
+        } */
 
-        stage("Docker Imaging") {
+      /*   stage("Docker Imaging") {
             steps {
                sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
             }
-        }
+        } */
 
         stage ("Deploy to staging") {
             steps {
