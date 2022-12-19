@@ -48,6 +48,7 @@ pipeline {
         stage ("Deploy to staging") {
             steps {
                sh "pwd"
+               sh "kubectl --kubeconfig=/home/kubernetes/.kube/config apply -f hazelcast.yaml"
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config apply -f deployment.yaml"
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config apply -f service.yaml"
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config cluster-info"
@@ -62,6 +63,14 @@ pipeline {
                        sh "chmod +x acceptance_test_kubernetes.sh && ./acceptance_test_kubernetes.sh"
                      }
                  }
+
+          stage ("Clean staging env") {
+
+               sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f service.yaml"
+               sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f deployment.yaml"
+               sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f hazelcast.yaml"
+
+          }
         
         
         
