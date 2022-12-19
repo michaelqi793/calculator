@@ -32,8 +32,16 @@ pipeline {
 
          stage("Docker Imaging") {
             steps {
-               sh "docker -H 172.17.0.2:2375 build -t archer999/calculator ."
+               sh "docker -H 172.17.0.2:2375 build -t archer999/calculator:${BUILD_TIMESTAMP} ."
             }
+        }
+
+        stage("Update version") {
+            steps {
+
+                sh "sed -i 's/{{VERSION}/${BUILD_TIMESTAMP}/g' deployment.yaml"
+            }
+
         }
 
         stage ("Deploy to staging") {

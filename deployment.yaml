@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: calculator
-        image: archer999/calculator
+        image: archer999/calculator:{{VERSION}}
         imagePullPolicy: Never
         ports:
         - containerPort: 8081
