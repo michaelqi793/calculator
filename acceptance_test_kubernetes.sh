@@ -8,4 +8,6 @@ test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
 test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
 test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
 test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
+test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
+test $(curl http://172.17.0.1:${NODE_PORT}/sum?a=1\&b=2) -eq 3
 mvn failsafe:integration-test failsafe:verify -Dcalculator.url=http://172.17.0.1:${NODE_PORT}

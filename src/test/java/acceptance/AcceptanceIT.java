@@ -1,7 +1,6 @@
 package acceptance;
 
 
-import io.cucumber.junit.platform.engine.Cucumber;
 import org.junit.platform.suite.api.*;
 
 import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
