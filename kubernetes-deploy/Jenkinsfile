@@ -66,10 +66,11 @@ pipeline {
 
           stage ("Clean staging env") {
 
+            steps {
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f service.yaml"
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f deployment.yaml"
                sh "kubectl --kubeconfig=/home/kubernetes/.kube/config delete -f hazelcast.yaml"
-
+            }
           }
         
         
