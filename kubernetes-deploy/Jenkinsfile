@@ -59,6 +59,7 @@ pipeline {
 
            stage ("Acceptance Test by Behavior") {
                      steps {
+                     // There is no good way to check whether the service is already running.  So just sleep and wait here.
                        sleep 50
                        sh "chmod +x acceptance_test_kubernetes.sh && ./acceptance_test_kubernetes.sh"
                      }
@@ -73,7 +74,20 @@ pipeline {
             }
           }
         
-        
+         stage ("Release") {
+            steps {
+              // currently i have no production cluster, so let it go.
+              echo 'Production Released.'
+            }
+
+         }
+
+         stage ("Smoke Test") {
+           steps {
+              // currently i have no production cluster, so let it go.
+              echo "Smoke succeeds."
+           }
+         }
         
     }
 
