@@ -20,7 +20,7 @@ public class Calculator {
      * @param b
      * @return the sum of a and b
      */
-    @Cacheable("sum")
+
     public int sum(final int a, final int b) {
         try {
             Thread.sleep(REST);
