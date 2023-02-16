@@ -1,9 +1,7 @@
 package com.archer.calculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -16,9 +14,9 @@ public final class CalculatorController {
     @Autowired
     private Calculator calculator;
 
-    @RequestMapping("/sum")
-    String sum(@RequestParam("a") final Integer a,
-               @RequestParam("b") final Integer b) {
-        return String.valueOf(calculator.sum(a, b));
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/sum", method = RequestMethod.POST, consumes = "application/json")
+    String sum(@RequestBody Adder adder) {
+        return String.valueOf(adder.apply());
     }
 }
